@@ -9,6 +9,8 @@ const subj= document.querySelector('#ti');
 const bodyte=document.querySelector('#body');
 const added=document.querySelector('.ad');
 const addn = document.querySelector('.addnot')
+const newtext=document.querySelector('#new');
+const newt=document.querySelector('.new');
 
 
 const hea = '♥️';
@@ -37,10 +39,7 @@ icon.addEventListener('mouseover',()=>
 const s = document.createElement('style');
 document.head.appendChild(s);
 const sheet = s.sheet;
-
-
-
-
+true
 
 
 
@@ -189,9 +188,19 @@ function set(em,div) {
 function remove(notiff,ind)
 {
    
-           
+         
  notiff.splice(ind,1);    
   
+  
+  if(notiff.length==0)
+  {
+      newt.style.display="none";
+  }
+  else
+  {
+      newtext.innerHTML=notiff.length; 
+  }
+ 
       
 }
 
@@ -211,7 +220,7 @@ notcon.innerHTML="";
     notifi.forEach((n,index)=>
     {
     
-    const div=document.createElement('div');
+   const div=document.createElement('div');
        div.className="not";
        
        if(n.sub!="" && n.body!="")
@@ -258,29 +267,28 @@ notcon.innerHTML="";
        
        `;
        
-       }
-       
+      } 
      
-            div.querySelector('.closenot').addEventListener('click',()=>
-           {
-               
-               var ind=div.querySelector('.closenot').getAttribute('data');
-               
-               const notiff = get();
-               
-               remove(notiff,ind);
-               
-               
-               localStorage.setItem('not',JSON.stringify(notiff));
-              
-               div.style.display="none";
-             //  display(notiff);
-                
-                 
-               
-           });
        
        
+       
+            
+     
+            
+    notcon.addEventListener('click', (e) => {
+    if (e.target.closest('.closenot')) {
+        const div = e.target.closest('.not');
+        const ind = e.target.closest('.closenot').getAttribute('data');
+
+        const notiff = get();
+       
+        remove(notiff, ind);
+        localStorage.setItem('not', JSON.stringify(notiff));
+
+        div.style.display = "none";
+    }
+});
+
     
        
  //    icon.style.setProperty('--length', notifi.length);
@@ -307,24 +315,44 @@ sheet.insertRule(`
     }
 `, 0);
 
-      
+      newt.style.display="flex";
+      newtext.innerHTML=notifi.length;
       
        
-       div.querySelector('.emoji').addEventListener('click', () => {
-       
-    div.querySelector('.emojicon').style.display = "flex";
+       notcon.addEventListener('click', (e) => {
     
+    const emojiBtn = e.target.closest('.emoji');
+    if (emojiBtn) {
+        const div = emojiBtn.closest('.not');
+        div.querySelector('.emojicon').style.display = "flex";
+    }
+
+    
+    const heartBtn = e.target.closest('.heart');
+    if (heartBtn) {
+        const div = heartBtn.closest('.not');
+        set(hea, div);
+    }
+
+    
+    const thumbBtn = e.target.closest('.thumb');
+    if (thumbBtn) {
+        const div = thumbBtn.closest('.not');
+        set(th, div);
+    }
+
+    
+    const handBtn = e.target.closest('.hand');
+    if (handBtn) {
+        const div = handBtn.closest('.not');
+        set(ha, div);
+    }
 });
 
-       
- div.querySelector('.heart').addEventListener('click', () => set(hea,div));
- 
-div.querySelector('.thumb').addEventListener('click', () => set(th,div));
- 
- div.querySelector('.hand').addEventListener('click', () => set(ha,div));
- 
         
         notcon.appendChild(div);
+        
+        
    
          });     
        
@@ -336,6 +364,8 @@ function clearall()
 {
     localStorage.clear();
     notcon.innerHTML="";
+    newt.style.display="none";
+    
 }
 
 
