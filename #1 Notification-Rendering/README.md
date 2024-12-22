@@ -17,4 +17,4 @@ Here is the output of the component :
 
 ## Live preview of the webpage
 
-[Live Preview](https://Hayatiiii.github.io/UI-Components/#1%20Notification-RenderingIndex.html)
+[Live Preview](https://Hayatiiii.github.io/UI-Components/#1%20Notification-Rendering/Index.html)
