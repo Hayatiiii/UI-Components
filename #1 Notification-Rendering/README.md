@@ -10,3 +10,7 @@ Notification rendering UI component works as a service to the end user for enabl
 4. You can remove or clear all notifications.
 
 ## Screenshot
+
+Here is the output of the component :
+
+<img src="screenshott.jpg" height="350px" width="300px">
