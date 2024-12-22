@@ -15,6 +15,6 @@ Here is the output of the component :
 
 <img src="screenshott.jpg" height="350px" width="300px">
 
-## Live preview of webpage
+## Live preview of the webpage
 
 [Live Preview](https://Hayatiiii.github.io/UI-Components/%231%20Notification-Rendering/Index.html)
